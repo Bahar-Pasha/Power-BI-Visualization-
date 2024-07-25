@@ -13,12 +13,27 @@ Most data cleaning and type transformations were performed using M language in P
 
 ### ETL Process Details
 Before exporting the data to Power BI, I defined primary keys for each table to establish relationships for data modeling. To relate dates effectively, I created a calendar table using Power BI’s New Table feature with the following DAX code:
+
 `CALENDAR(DATE(2017,7,1), MAX(Orders[OrderDate])+60)`
 
 This code generates a column with date values, from which I derived Month and Year columns. To calculate the fiscal year, I used this DAX formula:
+
 `Fiscal Year = IF(Calender[Month Num]>6, Calender[Year]+1, Calender[Year])`
+
 To format dates as 'MMM-YYYY', I created a YearMonth column with:
+
 ‍‍‍‍‍‍‍‍`YearMonth = FORMAT(DATE(Calender[Year],Calender[Month Num],1),"MMM-YYYY")`
+
+### Data modelling 
+Primary keys are used to relate tables to each other, similar to  join queries in SQL:
+
+![Screenshot 2024-07-25 221138](https://github.com/user-attachments/assets/a40fcb5c-1b1b-4fe6-a6ed-f696d1e50020)
+
+
+## Visualization 
+
+![Screenshot 2024-07-25 174108](https://github.com/user-attachments/assets/7ebdffb9-e64d-452a-a2d2-4c34600f9f08)
+
 
 
 
